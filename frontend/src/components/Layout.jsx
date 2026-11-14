@@ -20,6 +20,7 @@ export default function Layout() {
         <div className="max-w-5xl mx-auto px-4 py-3 flex flex-wrap items-center gap-2">
           <span className="font-bold text-slate-800 mr-4">Cloud Recommender</span>
           <NavLink to="/" end className={linkClass}>Dashboard</NavLink>
+          <NavLink to="/categories" className={linkClass}>Categories</NavLink>
           <NavLink to="/profile" className={linkClass}>Profile</NavLink>
           <span className="ml-auto text-sm text-slate-500">{user?.name}</span>
           <button

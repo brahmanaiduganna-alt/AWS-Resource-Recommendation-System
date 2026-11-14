@@ -20,11 +20,15 @@ def create_app():
     from app.routes.auth import auth_bp
     from app.routes.projects import projects_bp
     from app.routes.requirements import requirements_bp
+    from app.routes.recommendations import recommendations_bp
+    from app.routes.approval import approval_bp
 
     app.register_blueprint(health_bp)
     app.register_blueprint(auth_bp)
     app.register_blueprint(projects_bp)
     app.register_blueprint(requirements_bp)
+    app.register_blueprint(recommendations_bp)
+    app.register_blueprint(approval_bp)
 
     @app.errorhandler(PyMongoError)
     def database_error(exc):

@@ -79,4 +79,9 @@ def delete_project(project_id):
     if result.deleted_count == 0:
         return jsonify(error="Project not found."), 404
     get_db().requirements.delete_many({"project_id": oid})
+    get_db().recommendations.delete_many({"project_id": oid})
+    get_db().cost_estimates.delete_many({"project_id": oid})
+    get_db().deployments.delete_many({"project_id": oid})
     return jsonify(message="Project deleted."), 200
+
+

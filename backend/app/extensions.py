@@ -19,6 +19,7 @@ def init_db(app):
     try:
         _db.users.create_index([("email", ASCENDING)], unique=True)
         _db.projects.create_index([("user_id", ASCENDING), ("created_at", DESCENDING)])
+        _db.requirements.create_index([("project_id", ASCENDING)], unique=True)
         _db.token_blocklist.create_index("expires_at", expireAfterSeconds=0)
     except Exception as exc:
         print("WARNING: could not create indexes:", type(exc).__name__)

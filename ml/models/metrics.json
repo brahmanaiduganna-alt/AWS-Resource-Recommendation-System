@@ -1,0 +1,35 @@
+{
+  "data_source": "synthetic",
+  "warning": "Trained on synthetic data. Scores show the model learned the generator rules, not real AWS behaviour.",
+  "sklearn_version": "1.9.1",
+  "train_rows": 4000,
+  "test_rows": 1000,
+  "regression": {
+    "Random Forest": {
+      "r2_vcpu": 0.9433786946753265,
+      "r2_ram": 0.9479062976740704,
+      "mae_vcpu": 2.3336949999999956,
+      "mae_ram_gb": 5.3032800000000035,
+      "cv_r2_mean": 0.9449546895448944
+    },
+    "Linear Regression": {
+      "r2_vcpu": 0.6541833133797694,
+      "r2_ram": 0.5789052288570468,
+      "mae_vcpu": 8.252496341015348,
+      "mae_ram_gb": 22.519336440413444
+    }
+  },
+  "regression_model_saved": "Random Forest",
+  "classification": {
+    "Decision Tree": {
+      "accuracy": 1.0,
+      "f1_macro": 1.0
+    },
+    "Random Forest": {
+      "accuracy": 1.0,
+      "f1_macro": 1.0
+    }
+  },
+  "classification_model_saved": "Decision Tree",
+  "kmeans_silhouette": 0.19680668687646583
+}

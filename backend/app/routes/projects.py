@@ -78,4 +78,5 @@ def delete_project(project_id):
     result = get_db().projects.delete_one({"_id": oid, "user_id": g.user["_id"]})
     if result.deleted_count == 0:
         return jsonify(error="Project not found."), 404
+    get_db().requirements.delete_many({"project_id": oid})
     return jsonify(message="Project deleted."), 200

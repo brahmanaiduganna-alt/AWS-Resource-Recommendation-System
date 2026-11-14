@@ -1,0 +1,85 @@
+{
+  "data_source": "synthetic",
+  "warning": "Generated from documented sizing rules, NOT measured from real AWS workloads.",
+  "rows": 5000,
+  "seed": 42,
+  "rules": [
+    "need_vcpu = (base_vcpu + users/1000*vcpu_per_1000_users + traffic_gb_month/400) * perf_multiplier * noise",
+    "need_ram_gb = (base_ram + users/1000*ram_per_1000_users + storage_gb/200) * perf_multiplier * noise",
+    "perf_multiplier: low=0.7, medium=1.0, high=1.5; noise = lognormal(0, 0.08)",
+    "instance_family = category default; AI/ML with high performance -> gpu",
+    "values rounded up and clipped to 1..128 vCPU and 1..1024 GB RAM"
+  ],
+  "profiles": {
+    "E-Commerce": {
+      "base_vcpu": 1,
+      "vcpu_per_1000_users": 0.8,
+      "base_ram_gb": 2,
+      "ram_gb_per_1000_users": 1.5,
+      "default_family": "general"
+    },
+    "AI/ML": {
+      "base_vcpu": 2,
+      "vcpu_per_1000_users": 1.5,
+      "base_ram_gb": 8,
+      "ram_gb_per_1000_users": 3.0,
+      "default_family": "compute"
+    },
+    "Website Hosting": {
+      "base_vcpu": 1,
+      "vcpu_per_1000_users": 0.3,
+      "base_ram_gb": 1,
+      "ram_gb_per_1000_users": 0.4,
+      "default_family": "burstable"
+    },
+    "Mobile App": {
+      "base_vcpu": 1,
+      "vcpu_per_1000_users": 0.5,
+      "base_ram_gb": 2,
+      "ram_gb_per_1000_users": 0.8,
+      "default_family": "general"
+    },
+    "Video Streaming": {
+      "base_vcpu": 2,
+      "vcpu_per_1000_users": 1.0,
+      "base_ram_gb": 4,
+      "ram_gb_per_1000_users": 1.0,
+      "default_family": "compute"
+    },
+    "IoT": {
+      "base_vcpu": 1,
+      "vcpu_per_1000_users": 0.4,
+      "base_ram_gb": 2,
+      "ram_gb_per_1000_users": 0.6,
+      "default_family": "general"
+    },
+    "Database": {
+      "base_vcpu": 2,
+      "vcpu_per_1000_users": 0.6,
+      "base_ram_gb": 8,
+      "ram_gb_per_1000_users": 3.5,
+      "default_family": "memory"
+    },
+    "DevOps": {
+      "base_vcpu": 2,
+      "vcpu_per_1000_users": 0.4,
+      "base_ram_gb": 4,
+      "ram_gb_per_1000_users": 0.8,
+      "default_family": "general"
+    },
+    "Data Analytics": {
+      "base_vcpu": 4,
+      "vcpu_per_1000_users": 1.0,
+      "base_ram_gb": 16,
+      "ram_gb_per_1000_users": 4.0,
+      "default_family": "memory"
+    },
+    "Serverless": {
+      "base_vcpu": 1,
+      "vcpu_per_1000_users": 0.2,
+      "base_ram_gb": 1,
+      "ram_gb_per_1000_users": 0.3,
+      "default_family": "burstable"
+    }
+  }
+}

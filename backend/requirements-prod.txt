@@ -1,0 +1,12 @@
+﻿flask
+flask-cors
+pymongo
+certifi
+python-dotenv
+pyjwt
+boto3
+gunicorn
+pandas
+numpy
+scikit-learn
+joblib

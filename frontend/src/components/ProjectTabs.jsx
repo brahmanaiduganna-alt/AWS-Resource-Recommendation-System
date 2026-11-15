@@ -10,7 +10,10 @@ export default function ProjectTabs({ projectId }) {
       <NavLink to={`${base}/recommendation`} className={cls}>Recommendation</NavLink>
       <NavLink to={`${base}/architecture`} className={cls}>Architecture</NavLink>
       <NavLink to={`${base}/comparison`} className={cls}>Comparison</NavLink>
+      <NavLink to={`${base}/template`} className={cls}>Template</NavLink>
       <NavLink to={`${base}/approval`} className={cls}>Approval</NavLink>
+      <NavLink to={`${base}/deploy`} className={cls}>Deploy</NavLink>
+      <NavLink to={`${base}/monitoring`} className={cls}>Monitor</NavLink>
     </div>
   )
 }

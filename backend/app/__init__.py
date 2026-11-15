@@ -22,13 +22,15 @@ def create_app():
     from app.routes.requirements import requirements_bp
     from app.routes.recommendations import recommendations_bp
     from app.routes.approval import approval_bp
+    from app.routes.templates import templates_bp
+    from app.routes.deploy import deploy_bp
+    from app.routes.assistant import assistant_bp
+    from app.routes.monitoring import monitoring_bp
+    from app.routes.settings import settings_bp
 
-    app.register_blueprint(health_bp)
-    app.register_blueprint(auth_bp)
-    app.register_blueprint(projects_bp)
-    app.register_blueprint(requirements_bp)
-    app.register_blueprint(recommendations_bp)
-    app.register_blueprint(approval_bp)
+    for bp in (health_bp, auth_bp, projects_bp, requirements_bp, recommendations_bp,
+               approval_bp, templates_bp, deploy_bp, assistant_bp, monitoring_bp, settings_bp):
+        app.register_blueprint(bp)
 
     @app.errorhandler(PyMongoError)
     def database_error(exc):

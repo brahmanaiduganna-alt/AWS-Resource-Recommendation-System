@@ -21,6 +21,9 @@ export default function Layout() {
           <span className="font-bold text-slate-800 mr-4">Cloud Recommender</span>
           <NavLink to="/" end className={linkClass}>Dashboard</NavLink>
           <NavLink to="/categories" className={linkClass}>Categories</NavLink>
+          <NavLink to="/deployments" className={linkClass}>History</NavLink>
+          <NavLink to="/assistant" className={linkClass}>Assistant</NavLink>
+          <NavLink to="/settings" className={linkClass}>Settings</NavLink>
           <NavLink to="/profile" className={linkClass}>Profile</NavLink>
           <span className="ml-auto text-sm text-slate-500">{user?.name}</span>
           <button

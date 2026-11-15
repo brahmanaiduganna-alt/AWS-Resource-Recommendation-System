@@ -75,13 +75,15 @@ def delete_project(project_id):
         oid = ObjectId(project_id)
     except InvalidId:
         return jsonify(error="Invalid project id."), 400
-    result = get_db().projects.delete_one({"_id": oid, "user_id": g.user["_id"]})
-    if result.deleted_count == 0:
+    db = get_db()
+    project = db.projects.find_one({"_id": oid, "user_id": g.user["_id"]})
+    if not project:
         return jsonify(error="Project not found."), 404
-    get_db().requirements.delete_many({"project_id": oid})
-    get_db().recommendations.delete_many({"project_id": oid})
-    get_db().cost_estimates.delete_many({"project_id": oid})
-    get_db().deployments.delete_many({"project_id": oid})
+    if db.deployment_runs.find_one({"project_id": oid, "status": {"$ne": "deleted"}}):
+        return jsonify(error="This project has AWS resources. Delete the stack on the Deploy tab first."), 409
+    db.projects.delete_one({"_id": oid})
+    db.requirements.delete_many({"project_id": oid})
+    db.recommendations.delete_many({"project_id": oid})
+    db.cost_estimates.delete_many({"project_id": oid})
+    db.deployments.delete_many({"project_id": oid})
     return jsonify(message="Project deleted."), 200
-
-
